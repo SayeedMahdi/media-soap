@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 
 
-export default function Challange() {
+export default function Challenge() {
   const [roomId, setRoomId] = useState()
   const CopyClip = dynamic(() => import("./CopyClip"), { ssr: false })
   const generateRoom = () =>{
