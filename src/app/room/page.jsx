@@ -20,18 +20,17 @@ let producerTransport
 let consumerTransports = []
 let audioProducer
 let videoProducer
-let consumer
-let isProducer = false
 
 
   const videoRef = useRef(null);
   const router = useRouter()
 
+
   
   const socket = io("http://45.33.96.47:3000/mediasoup",{
     transports: ["websocket", "polling"],
   })
-  
+   
   socket.on('connection-success', ({ socketId }) => {
     console.log("id",socketId)
     getLocalStream()
