@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation"
 
 
 
+
 export default function Page (){
 
    console.log()
@@ -329,7 +330,7 @@ const connectRecvTransport = async (consumerTransport, remoteProducerId, serverC
     } else {
       //append to the video container
       newElem.setAttribute('class', 'remoteVideo')
-      newElem.innerHTML = '<video id="' + remoteProducerId + '" autoplay class="video" ></video>'
+      newElem.innerHTML = '<video id="' + remoteProducerId + '" className="bg-black mx-2 " autoplay ></video>'
     }
 
     videoContainer.appendChild(newElem)
@@ -363,31 +364,63 @@ socket.on('producer-closed', ({ remoteProducerId }) => {
 
 
   return (
-    <div id="video">
+    <div id="video" className="mx-auto ">
       <table>
         <thead>
-          <thead>Local Video</thead>
-          <thead>Remote Video</thead>
         </thead>
         <tbody>
           <tr className="align-top">
             <td>
-              <div className="p-5 bg-slate-500 flex justify-center">
+              <div className="p-2 rounded-lg bg-slate-200 flex justify-center">
                 <video id="localVideo" ref={videoRef} autoPlay  className="w-96 bg-black mx-2" ></video>
               </div>
             </td>
             <td>
-              <div className="p-5 bg-slate-500 flex justify-center">
-                <div id="videoContainer"></div>
+              <div className="p-2 rounded-lg bg-slate-200 flex justify-center w-46 h-46 ">
+                <div id="videoContainer" className="w-46 h-46 overflow-clip"></div>
               </div>
             </td>
-          </tr>
+            </tr>
           {/* <button onClick={createRoom}>Create a new instance</button> */}
           
         </tbody>
-      </table>
-    </div>
+        </table>
+        <div className="flex flex-row relative  items-center justify-center">
+          <div className="absolute -bottom-64 space-x-2 m-auto">
+      <button className="bg-red-600 hover:bg-red-700 rounded-full h-10 w-10">
+        <svg xmlns="http://www.w3.org/2000/svg" className="ionicon h-6 w-6 text-white ml-2" viewBox="0 0 512 512">
+        <path d="M451 374c-15.88-16-54.34-39.35-73-48.76-24.3-12.24-26.3-13.24-45.4.95-12.74 9.47-21.21 17.93-36.12 14.75s-47.31-21.11-75.68-49.39-47.34-61.62-50.53-76.48 5.41-23.23 14.79-36c13.22-18 12.22-21 .92-45.3-8.81-18.9-32.84-57-48.9-72.8C119.9 44 119.9 47 108.83 51.6A160.15 160.15 0 0083 65.37C67 76 58.12 84.83 51.91 98.1s-9 44.38 23.07 102.64 54.57 88.05 101.14 134.49S258.5 406.64 310.85 436c64.76 36.27 89.6 29.2 102.91 23s22.18-15 32.83-31a159.09 159.09 0 0013.8-25.8C465 391.17 468 391.17 451 374z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
+        </svg>
+      </button>
+      <button className="hover:bg-slate-200 hover:text-black rounded-full h-10 w-10">
+        <svg xmlns="http://www.w3.org/2000/svg" className="ionicon h-6 w-6 text-slate-300 ml-2  hover:text-black" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M432 320v112H320M421.8 421.77L304 304M80 192V80h112M90.2 90.23L208 208M320 80h112v112M421.77 90.2L304 208M192 432H80V320M90.23 421.8L208 304"/>
+       </svg>
+      </button>
+      <button className="hover:bg-slate-200  hover:text-black rounded-full h-10 w-10">
+        <svg xmlns="http://www.w3.org/2000/svg" className="ionicon h-6 w-6 text-white ml-2  hover:text-black" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M192 448h128M384 208v32c0 70.4-57.6 128-128 128h0c-70.4 0-128-57.6-128-128v-32M256 368v80"/><path d="M256 64a63.68 63.68 0 00-64 64v111c0 35.2 29 65 64 65s64-29 64-65V128c0-36-28-64-64-64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+       </svg>
 
+      </button>
+      <button className="hover:bg-slate-200  hover:text-black rounded-full h-10 w-10">
+        <svg xmlns="http://www.w3.org/2000/svg" className="ionicon h-6 w-6 text-white ml-2  hover:text-black" viewBox="0 0 512 512">
+        <path d="M336 448h56a56 56 0 0056-56v-56M448 176v-56a56 56 0 00-56-56h-56M176 448h-56a56 56 0 01-56-56v-56M64 176v-56a56 56 0 0156-56h56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+       </svg>
 
+      </button>
+      <button className="hover:bg-slate-200 hover:text-black rounded-full h-10 w-10">
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="text-white w-6 h-6 ml-2  hover:text-black">
+       <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+       </svg>
+
+      </button>
+      </div>
+      </div>
+      </div>
+      
+      
+      
+    
   )
 }
