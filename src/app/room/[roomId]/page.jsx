@@ -24,7 +24,7 @@ export default function Page (){
 
 
   
-  const socket = io("https://mediaserver-9lri.onrender.com/mediasoup",{
+  const socket = io("localhost:4000/mediasoup",{
     transports: ["websocket", "polling"],
   })
    
