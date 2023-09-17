@@ -2,28 +2,25 @@
 import React, { useEffect, useRef } from "react"
 import  {io}  from "socket.io-client"
 const mediasoupClient = require("mediasoup-client")
-import {useRouter} from "next/navigation"
+import { useParams } from 'next/navigation';
 
 
 
 
 export default function Page (){
+  const urlParams = useParams();
 
-   console.log()
-   const url = window.location.href
-   const roomName = url.split('=')[1];
+  //  const url = window.location.href
+   const roomName = urlParams.roomId;
 
    //variables
-   let device
-let rtpCapabilities
-let producerTransport
-let consumerTransports = []
-let audioProducer
-let videoProducer
-
-
+    let device
+    let rtpCapabilities
+    let producerTransport
+    let consumerTransports = []
+    let audioProducer
+    let videoProducer
   const videoRef = useRef(null);
-  const router = useRouter()
 
 
   

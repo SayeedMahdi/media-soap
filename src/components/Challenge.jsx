@@ -3,10 +3,12 @@ import {useState} from 'react'
 import dynamic from "next/dynamic"
 import { nanoid } from 'nanoid'
 import Link from 'next/link'
-
+import { useRouter } from 'next/navigation';
 
 
 export default function Challenge() {
+  const routh = useRouter()
+  console.log(routh);
   const [roomId, setRoomId] = useState()
   const CopyClip = dynamic(() => import("./CopyClip"), { ssr: false })
   const generateRoom = () =>{
@@ -29,10 +31,7 @@ export default function Challenge() {
 Create Challenge
 </button>
 
-<Link  href={{
-    pathname: '/room',
-    query: { roomId: roomId },
-  }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4">
+<Link  href={`/room/${roomId}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4">
 Join Challenges
 </Link>
 </div>
@@ -42,11 +41,11 @@ Join Challenges
       type="text"
       class="peer block min-h-[auto] w-full rounded border-0 bg-neutral-100 px-1 py-[0.22rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
       id="exampleFormControlInput5"
-      value={`localhost:3000/room?roomId=${roomId}`}
+      value={`localhost:3000/room/roomId=${roomId}`}
       aria-label="Disabled input example"
       disabled />
     
-  <CopyClip content={`localhost:3000/room?roomId=${roomId}`}/>
+  <CopyClip content={`localhost:3000/room/${roomId}`}/>
   </div>)
 }
 
