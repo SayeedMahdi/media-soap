@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef } from "react"
+import React, { useState, useRef } from "react"
 import  {io}  from "socket.io-client"
 const mediasoupClient = require("mediasoup-client")
 import { useParams } from 'next/navigation';
@@ -9,6 +9,7 @@ import { useParams } from 'next/navigation';
 
 export default function Page (){
   const urlParams = useParams();
+  const [stream, setStream] = useState(null)
 
   //  const url = window.location.href
    const roomName = urlParams.roomId;
@@ -24,7 +25,7 @@ export default function Page (){
 
 
   
-  const socket = io("localhost:4000/mediasoup",{
+  const socket = io("http://127.0.0.1:4000/mediasoup",{
     transports: ["websocket", "polling"],
   })
    
@@ -88,7 +89,7 @@ export default function Page (){
   const getLocalStream = async() => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-      console.log("stream",stream);
+      setStream(stream)
       videoRef.current.srcObject = stream;
       streamSuccess(stream)
       // audioRef.current.srcObject = stream
@@ -356,6 +357,8 @@ socket.on('producer-closed', ({ remoteProducerId }) => {
   // remove the video div element
   videoContainer.removeChild(document.getElementById(`td-${remoteProducerId}`))
 })
+
+
 
 
 
