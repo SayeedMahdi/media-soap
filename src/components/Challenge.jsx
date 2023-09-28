@@ -35,16 +35,29 @@ Join Challenges
 </Link>
 </div>
 {
-  roomId && (<div className='flex gap-3 items-center'>
+  roomId && (
+  <div className='flex gap-3 items-center w-[100%] flex-col mt-10'>
+    <div className='flex gap-4'>
+    <label htmlFor="challenge" className='text-white' >challengee</label>
   <input
       type="text"
       class="peer block min-h-[auto] w-full rounded border-0 bg-neutral-100 px-1 py-[0.22rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-      id="exampleFormControlInput5"
+      id="challenge"
       value={`localhost:3000/room/${roomId}`}
       aria-label="Disabled input example"
       disabled />
-    
-  <CopyClip content={`localhost:3000/room/${roomId}`}/>
+    </div>
+    <div className='flex gap-4'>
+<label htmlFor="viewer" className='text-white'>viewer</label>
+  <input
+      type="text"
+      class="peer block min-h-[auto] w-full rounded border-0 bg-neutral-100 px-1 py-[0.22rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+      id="viewer"
+      value={`localhost:3000/room/view-${roomId}`}
+      aria-label="Disabled input example"
+      disabled />
+  </div>
+  <CopyClip content={`localhost:3000/room/view-${roomId}`}/>
   </div>)
 }
 
